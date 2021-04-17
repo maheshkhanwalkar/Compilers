@@ -1,5 +1,7 @@
 package com.revtekk.compilers
 
+import java.util.*
+
 
 /**
  * "Combining" expression
@@ -19,7 +21,13 @@ enum class BinaryOp {
 /**
  * Binary operand expression
  */
-data class BinaryExpression(val op: BinaryOp, val lhs: Expression, val rhs: Expression): Expression
+data class BinaryExpression(val op: BinaryOp, val lhs: Expression, val rhs: Expression): Expression {
+    private val hashCode = Objects.hash(op, lhs, rhs)
+
+    override fun hashCode(): Int {
+        return hashCode
+    }
+}
 
 /**
  * Unary operand types
@@ -31,4 +39,10 @@ enum class UnaryOp {
 /**
  * Unary operand expression
  */
-data class UnaryExpression(val op: UnaryOp, val target: Expression): Expression
+data class UnaryExpression(val op: UnaryOp, val target: Expression): Expression {
+    private val hashCode = Objects.hash(op, target)
+
+    override fun hashCode(): Int {
+        return hashCode
+    }
+}
